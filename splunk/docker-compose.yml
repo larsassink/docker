@@ -1,0 +1,32 @@
+services:
+  splunk:
+    image: splunk/splunk:latest
+    container_name: splunk
+    restart: unless-stopped
+
+    environment:
+      # Required license acceptance flags
+      SPLUNK_GENERAL_TERMS: "--accept-sgt-current-at-splunk-com"
+      SPLUNK_START_ARGS: "--accept-license"
+      SPLUNK_PASSWORD: "${SPLUNK_PASSWORD}"
+
+    ports:
+      - "8000:8000"   # Web UI
+      - "8089:8089"   # Management API
+      - "9997:9997"   # Forwarder port (enable inside UI)
+      - "8088:8088"   # HTTP Event Collector (enable inside UI)
+
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+    volumes:
+      - ./data/splunk/etc:/opt/splunk/etc
+      - ./data/splunk/var:/opt/splunk/var
+
+    healthcheck:
+      test: ["CMD", "/opt/splunk/bin/splunk", "status", "--accept-license"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
