@@ -1,0 +1,163 @@
+{
+    "name": "Kafka Test - Send Messages",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "c8f5e3d1-9a2b-4c7d-8e1f-2a3b4c5d6e7f",
+        "name": "When clicking 'Test workflow'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          240,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "message1",
+                "value": "Hello from n8n! This is test message #1"
+              },
+              {
+                "name": "message2",
+                "value": "Testing Kafka integration with message #2"
+              },
+              {
+                "name": "message3",
+                "value": "Final test message #3 - Kafka is working!"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "Create Test Messages",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.3,
+        "position": [
+          460,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "1a2b3c4d",
+                "name": "messages",
+                "value": "={{ [\n  { \"message\": $json.message1, \"timestamp\": $now },\n  { \"message\": $json.message2, \"timestamp\": $now },\n  { \"message\": $json.message3, \"timestamp\": $now }\n] }}",
+                "type": "array"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "name": "Format as Array",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.3,
+        "position": [
+          680,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "messages",
+          "options": {}
+        },
+        "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+        "name": "Split Messages",
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          900,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "topic": "test-topic",
+          "sendInputData": false,
+          "message": "={{ $json.message }}",
+          "options": {
+            "key": "={{ $json.timestamp }}"
+          }
+        },
+        "id": "d4e5f6a7-b8c9-0123-def1-234567890123",
+        "name": "Send to Kafka",
+        "type": "n8n-nodes-base.kafka",
+        "typeVersion": 1,
+        "position": [
+          1120,
+          300
+        ],
+        "credentials": {
+          "kafka": {
+            "id": "1",
+            "name": "Local Kafka"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When clicking 'Test workflow'": {
+        "main": [
+          [
+            {
+              "node": "Create Test Messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Test Messages": {
+        "main": [
+          [
+            {
+              "node": "Format as Array",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Format as Array": {
+        "main": [
+          [
+            {
+              "node": "Split Messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Messages": {
+        "main": [
+          [
+            {
+              "node": "Send to Kafka",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "versionId": "1",
+    "meta": {
+      "instanceId": "local"
+    },
+    "id": "kafka-test-workflow",
+    "tags": []
+  }
