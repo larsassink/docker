@@ -81,11 +81,9 @@
       {
         "parameters": {
           "topic": "test-topic",
-          "sendInputData": false,
-          "message": "={{ $json.message }}",
-          "options": {
-            "key": "={{ $json.timestamp }}"
-          }
+          "sendInputData": true,
+          "message": "={{ JSON.stringify($json) }}",
+          "options": {}
         },
         "id": "d4e5f6a7-b8c9-0123-def1-234567890123",
         "name": "Send to Kafka",
