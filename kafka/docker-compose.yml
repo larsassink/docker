@@ -42,7 +42,7 @@ services:
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
     volumes:
-      - ./kui/config.yml:/etc/kafkaui/dynamic_config.yaml:ro
+      - ./kui/config.yml:/etc/kafkaui/dynamic_config.yaml
 
 volumes:
   kafka_data:
