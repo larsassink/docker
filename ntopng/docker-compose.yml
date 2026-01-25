@@ -1,0 +1,9 @@
+services:
+  ntopng:
+    image: ntop/ntopng:latest
+    container_name: ntopng
+    network_mode: host
+    volumes:
+      - ./ntopng.license:/etc/ntopng.license:ro
+    command: ["-i", "eth0"]
+    restart: unless-stopped
