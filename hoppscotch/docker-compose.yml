@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: hoppscotch-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hop
+      POSTGRES_USER: <username>
+      POSTGRES_PASSWORD: <SuperStrongPassword / or not so strong>
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - hoppscotch
+
+  hoppscotch-backend:
+    image: hoppscotch/hoppscotch-backend
+    container_name: hoppscotch-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3170:3170"
+    depends_on:
+      - postgres
+    networks:
+      - hoppscotch
+
+  hoppscotch-frontend:
+    image: hoppscotch/hoppscotch-frontend
+    container_name: hoppscotch-frontend
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+      - "3200:3200"
+    depends_on:
+      - hoppscotch-backend
+    networks:
+      - hoppscotch
+
+  hoppscotch-admin:
+    image: hoppscotch/hoppscotch-admin
+    container_name: hoppscotch-admin
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3100:3100"
+    depends_on:
+      - hoppscotch-backend
+    networks:
+      - hoppscotch
+
+volumes:
+  postgres_data:
+
+networks:
+  hoppscotch:
+    driver: bridge

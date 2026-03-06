@@ -1,0 +1,13 @@
+services:
+  proxyscotch:
+    image: hoppscotch/proxyscotch
+    container_name: proxyscotch
+    restart: unless-stopped
+    ports:
+      - "9159:9159"
+    networks:
+      - hoppscotch_hoppscotch
+
+networks:
+  hoppscotch_hoppscotch:
+    external: true
