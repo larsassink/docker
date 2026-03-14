@@ -14,7 +14,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: umap/umap:2.0.2
+    image: umap/umap:3.6.3
     ports:
       - "${PORT-8000}:8000"
       # - "80:8000"
