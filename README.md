@@ -2,6 +2,9 @@
 
 A collection of Docker Compose templates for quickly deploying common services and applications.
 
+> [!WARNING]
+> Most of the README's have been generated with AI and may contain inaccuracies. Always refer to the official documentation of the respective services for the most accurate and up-to-date information.
+
 ## About
 
 This repository contains pre-configured Docker Compose files that can be used as starting points for various containerized applications and services. Each template is designed to be simple, well-documented, and easy to customize.
@@ -31,12 +34,12 @@ Each template should include:
 - Configure appropriate volume mounts for data persistence
 - Review port mappings to avoid conflicts
 
-## Contributing
+<!-- ## Contributing
 
 Feel free to add new templates or improve existing ones. When adding a template:
 - Use clear, descriptive naming
 - Include inline comments for important configurations
-- Test the template before committing
+- Test the template before committing -->
 
 ## License
 
