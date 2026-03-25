@@ -1,1 +1,28 @@
-# Placeholder
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:18.10.0-ee.0
+    container_name: gitlab
+    restart: always
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    hostname: 'git.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.example.com'
+
+        # Registry
+        # gitlab_rails['registry_enabled'] = true
+        # registry_external_url 'https://reg.example.com'
+        # registry_nginx['listen_port'] = 5005
+        # registry_nginx['listen_https'] = false
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2222:22'
+      # - '5005:5005' - Registry port
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    shm_size: '256m'
