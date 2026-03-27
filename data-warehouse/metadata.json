@@ -1,5 +1,6 @@
 {
     "name": "Data Warehouse",
     "description": "Store loads of data.",
-    "url": "https://data-warehouse.prod.omi.ms"
+    "url": "https://data-warehouse.prod.omi.ms",
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/databricks.svg"
   }
