@@ -1,0 +1,6 @@
+{
+    "name": "uMap",
+    "description": "uMap lets you create maps with OpenStreetMap layers.",
+    "url": "https://git.aio.sh/assie/docker/-/tree/main/umap",
+    "icon": "https://wiki.openstreetmap.org/w/images/thumb/8/8f/Umap_logo.svg/250px-Umap_logo.svg.png"
+  }

@@ -1,9 +1,0 @@
-services:
-  zensical:
-    image: zensical/zensical
-    container_name: zensical
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/docs
-    command: []

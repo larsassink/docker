@@ -1,0 +1,6 @@
+{
+    "name": "Windows 11",
+    "description": "Windows 11 in an Docker container.",
+    "url": "https://git.aio.sh/assie/docker/-/tree/main/windows11",
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/windows-11.png"
+  }
