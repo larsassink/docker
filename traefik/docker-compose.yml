@@ -1,0 +1,33 @@
+services:
+  traefik:
+    image: traefik:v3.6.12
+    container_name: traefik
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+
+    environment:
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
+
+    volumes:
+      - ./traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./conf.d:/etc/traefik/conf.d:ro
+      - ./ssl:/etc/traefik/ssl
+      - ./auth:/etc/traefik/auth:ro
+      - ./logs:/var/log/traefik
+      # only keep this if you will enable the Docker provider
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    command:
+      - --configFile=/etc/traefik/traefik.yaml
+
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    name: traefik
+    driver: bridge

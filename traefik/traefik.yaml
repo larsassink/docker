@@ -1,0 +1,55 @@
+providers:
+  file:
+    directory: /etc/traefik/conf.d/
+
+entryPoints:
+  web:
+    address: ':80'
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ':443'
+    http:
+      tls:
+        certResolver: letsencrypt
+  traefik:
+    address: ':8080'
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "john@doe.com"
+      storage: /etc/traefik/ssl/acme.json
+      # Changed from tlsChallenge to dnsChallenge for Tailscale/Cloudflare
+      dnsChallenge:
+        provider: cloudflare
+        # Optional: specifies which DNS servers to check for propagation
+        resolvers: ["1.1.1.1:53", "8.8.8.8:53"]
+
+api:
+  dashboard: true
+  insecure: true
+
+log:
+  filePath: /var/log/traefik/traefik.log
+  format: json
+  level: INFO
+
+accessLog:
+  filePath: /var/log/traefik/traefik-access.log
+  format: json
+  filters:
+    statusCodes:
+      - "200"
+      - "400-599"
+    retryAttempts: true
+    minDuration: "10ms"
+  bufferingSize: 0
+  fields:
+    headers:
+      defaultMode: drop
+      names:
+        User-Agent: keep
