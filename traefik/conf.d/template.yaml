@@ -1,0 +1,15 @@
+http:
+  routers:
+    SERVICE-NAME:
+      rule: "Host(`sub.domain.com`)"
+      entryPoints:
+        - websecure
+      service: SERVICE-NAME
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    SERVICE-NAME:
+      loadBalancer:
+        servers:
+          - url: "http://0.0.0.0:80"
