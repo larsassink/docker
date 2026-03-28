@@ -1,0 +1,23 @@
+http:
+  routers:
+    dashboard:
+      rule: "Host(`dashboard.domain.com`)"
+      entryPoints:
+        - websecure
+      middlewares:
+        - "auth"
+      service: dashboard
+      tls:
+        certResolver: letsencrypt
+
+  # The authentication logic
+  middlewares:
+    auth:
+      basicAuth:
+        usersFile: "/etc/traefik/auth/usersfile"
+
+  services:
+    dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://0.0.0.0:8080/"
