@@ -2,5 +2,5 @@
     "name": "ELK Stack",
     "description": "Elasticsearch Stack.",
     "url": "https://git.aio.sh/assie/docker/-/tree/main/elastic",
-    "icon": ""
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/elastic-kibana.svg"
   }

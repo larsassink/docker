@@ -2,5 +2,5 @@
     "name": "Teleport",
     "description": "The easiest, and most secure way to access and protect all of your infrastructure.",
     "url": "https://git.aio.sh/assie/docker/-/tree/main/teleport",
-    "icon": ""
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/teleport.svg"
   }
