@@ -2,5 +2,5 @@
     "name": "GitLab",
     "description": "GitLab enterprise edition.",
     "url": "https://git.aio.sh/",
-    "icon": ""
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gitlab.svg"
   }

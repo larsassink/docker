@@ -2,5 +2,5 @@
     "name": "TeamCity",
     "description": "A powerful, user-friendly CI/CD server designed for automating software build, test, and deployment pipelines.",
     "url": "https://git.aio.sh/assie/docker/-/tree/main/teamcity",
-    "icon": ""
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/teamcity.svg"
   }

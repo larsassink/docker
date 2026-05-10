@@ -2,5 +2,5 @@
     "name": "Infisical",
     "description": "Secrets management.",
     "url": "https://vault.prod.omi.ms",
-    "icon": ""
+    "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/infisical.svg"
   }
