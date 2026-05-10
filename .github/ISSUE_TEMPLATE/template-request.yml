@@ -1,0 +1,40 @@
+name: Template Request
+description: Request a new Docker Compose template to be added to the collection.
+title: "Template request: "
+labels: ["template-request"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Service Name
+      description: The name of the service or stack you want added.
+      placeholder: e.g. Grafana
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does this service do? Why would it be useful to have a template for it?
+      placeholder: A brief description of the service and its use case.
+    validations:
+      required: true
+
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub / GitLab Repository
+      description: Link to the source repository.
+      placeholder: https://github.com/...
+    validations:
+      required: true
+
+  - type: input
+    id: docs
+    attributes:
+      label: Documentation URL
+      description: Link to the official documentation (optional).
+      placeholder: https://...
+    validations:
+      required: false
